@@ -1,0 +1,44 @@
+{
+	"name": "worker-pwa-starter",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+		"upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+		"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview -- --port 3000",
+		"preview:remote": "opennextjs-cloudflare build && opennextjs-cloudflare preview -- --remote --port 3000",
+		"cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate:local": "wrangler d1 migrations apply DB --local",
+		"db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+		"db:seed:local": "wrangler d1 execute DB --local --file=drizzle/seed.sql",
+		"db:seed:remote": "wrangler d1 execute DB --remote --file=drizzle/seed.sql"
+	},
+	"dependencies": {
+		"@opennextjs/cloudflare": "^1.19.9",
+		"drizzle-orm": "^0.45.2",
+		"lucide-react": "^1.26.0",
+		"next": "16.2.11",
+		"react": "^19.1.7",
+		"react-dom": "^19.1.7",
+		"zustand": "^5.0.14"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^5.20260723.1",
+		"@eslint/eslintrc": "^3",
+		"@tailwindcss/postcss": "^4",
+		"@types/node": "^20.19.43",
+		"@types/react": "^19.1.7",
+		"@types/react-dom": "^19.1.7",
+		"drizzle-kit": "^0.31.10",
+		"eslint": "^9",
+		"eslint-config-next": "16.2.11",
+		"tailwindcss": "^4",
+		"typescript": "^5.7.4",
+		"wrangler": "^4.113.0"
+	}
+}

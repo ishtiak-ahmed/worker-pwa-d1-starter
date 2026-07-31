@@ -1,0 +1,42 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "worker-pwa-d1-starter",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2026-07-24",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"dev": {
+		"port": 3000
+	},
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".open-next/assets"
+	},
+	"images": {
+		"binding": "IMAGES"
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "worker-pwa-d1-starter"
+		}
+	],
+	"observability": {
+		"enabled": true
+	},
+	"placement": {
+		"mode": "smart"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "starter-db",
+			"database_id": "d0febf82-ac03-4391-9c8d-f75f9a471a51",
+			"migrations_dir": "./drizzle",
+			"migrations_pattern": "migrations/*/migration.sql"
+		}
+	],
+	"upload_source_maps": true
+}

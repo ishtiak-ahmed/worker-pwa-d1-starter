@@ -1,0 +1,5 @@
+NEXTJS_ENV=development
+CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id_here
+CLOUDFLARE_DATABASE_NAME=starter-db
+CLOUDFLARE_DATABASE_ID=your_cloudflare_database_id_here
+CLOUDFLARE_API_TOKEN=your_cloudflare_api_token_here
