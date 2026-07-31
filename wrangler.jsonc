@@ -35,7 +35,7 @@
 			"database_name": "starter-db",
 			"database_id": "d0febf82-ac03-4391-9c8d-f75f9a471a51",
 			"migrations_dir": "./drizzle",
-			"migrations_pattern": "migrations/*/migration.sql"
+			"migrations_pattern": "drizzle/*.sql"
 		}
 	],
 	"upload_source_maps": true
