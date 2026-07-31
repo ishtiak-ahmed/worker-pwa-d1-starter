@@ -48,26 +48,47 @@ cd worker-pwa-d1-starter
 npm install
 ```
 
-### Step 3: Configure environment variables
+### Step 3: Create Cloudflare D1 database
+
+Create your Cloudflare D1 database:
+
+```bash
+npx wrangler d1 create <db-name>
+```
+
+Update `wrangler.jsonc` with the returned `database_id`:
+
+```jsonc
+"d1_databases": [
+  {
+    "binding": "DB",
+    "database_name": "<db-name>",
+    "database_id": "YOUR_DATABASE_ID_HERE"
+  }
+]
+```
+
+### Step 4: Configure environment variables
 
 Copy the example environment files:
 
 ```bash
 cp .dev.vars.example .dev.vars
-cp .env.local.example .env.local
+cp env.local.example .env.local
 ```
 
-Fill in the following three critical variables in both files:
+Fill in your Cloudflare account ID, API token, and the `database_id` created in Step 3 in both files:
 
 ```ini
 CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id
+CLOUDFLARE_DATABASE_NAME=<db-name>
 CLOUDFLARE_DATABASE_ID=your_cloudflare_database_id
 CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
 ```
 
 > **Full reference:** See the [Environment Variables Reference](#-environment-variables--secrets-reference) table below for all available variables and their descriptions.
 
-### Step 4: Generate Cloudflare Types
+### Step 5: Generate Cloudflare Types
 
 Generate TypeScript definitions for Cloudflare bindings (`CloudflareEnv`):
 
@@ -75,26 +96,21 @@ Generate TypeScript definitions for Cloudflare bindings (`CloudflareEnv`):
 npm run cf-typegen
 ```
 
-### Step 5: Set up the D1 database
+### Step 6: Set up and migrate local D1 database
 
-Create your Cloudflare D1 database, configure the binding, generate migrations, and apply them locally:
+Generate migration files from the Drizzle schema and apply them locally:
 
 ```bash
-# 1. Create the database
-npx wrangler d1 create starter-db
-
-# 2. Update wrangler.jsonc with the returned database_id (see output above)
-
-# 3. Generate migration files from the Drizzle schema
+# 1. Generate migration files from the Drizzle schema
 npm run db:generate
 
-# 4. Apply migrations to your local D1 SQLite instance
+# 2. Apply migrations to your local D1 SQLite instance
 npm run db:migrate:local
 ```
 
 > **Full guide:** See the [D1 Database Setup Guide](#️-cloudflare-d1-database-setup-guide) section for detailed instructions including seeding and remote migration.
 
-### Step 6: Run the development server
+### Step 7: Run the development server
 
 ```bash
 npm run dev
@@ -102,7 +118,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the starter dashboard.
 
-### Step 7: (Optional) Preview Cloudflare Worker locally
+### Step 8: (Optional) Preview Cloudflare Worker locally
 
 Build and preview the app in the Cloudflare Workers local runtime (`workerd` via Wrangler):
 
@@ -191,7 +207,7 @@ export default function HomePage() {
 Run the following command to create a new Cloudflare D1 SQLite database in your Cloudflare account:
 
 ```bash
-npx wrangler d1 create starter-db
+npx wrangler d1 create <db-name>
 ```
 
 Output example:
@@ -223,7 +239,7 @@ Copy `.dev.vars.example` to `.dev.vars` (for local Cloudflare Worker emulation) 
 
 ```bash
 cp .dev.vars.example .dev.vars
-cp .env.local.example .env.local
+cp env.local.example .env.local
 ```
 
 Fill in your Cloudflare account, database name, and database ID credentials:
