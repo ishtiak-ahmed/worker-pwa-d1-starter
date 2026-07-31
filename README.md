@@ -96,9 +96,9 @@ Generate TypeScript definitions for Cloudflare bindings (`CloudflareEnv`):
 npm run cf-typegen
 ```
 
-### Step 6: Set up and migrate local D1 database
+### Step 6: Set up, migrate, and seed local D1 database
 
-Generate migration files from the Drizzle schema and apply them locally:
+Generate migration files from the Drizzle schema, apply them locally, and seed sample data:
 
 ```bash
 # 1. Generate migration files from the Drizzle schema
@@ -106,6 +106,9 @@ npm run db:generate
 
 # 2. Apply migrations to your local D1 SQLite instance
 npm run db:migrate:local
+
+# 3. Seed your local D1 SQLite instance with sample data
+npm run db:seed:local
 ```
 
 > **Full guide:** See the [D1 Database Setup Guide](#️-cloudflare-d1-database-setup-guide) section for detailed instructions including seeding and remote migration.
@@ -124,6 +127,23 @@ Build and preview the app in the Cloudflare Workers local runtime (`workerd` via
 
 ```bash
 npm run preview
+```
+
+### Step 9: Migrate and seed remote D1 database (Production)
+
+Apply migrations and seed sample data to your live Cloudflare D1 database on the edge:
+
+```bash
+npm run db:migrate:remote
+npm run db:seed:remote
+```
+
+### Step 10: Deploy application
+
+Deploy your full-stack edge application to Cloudflare Workers:
+
+```bash
+npm run deploy
 ```
 
 ---

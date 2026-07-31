@@ -74,7 +74,7 @@ const STEPS = [
   },
   {
     step: "8",
-    label: "Migrate remote D1",
+    label: "Migrate & seed remote D1",
     icon: <Globe className="w-3.5 h-3.5" />,
     cmd: "npm run db:migrate:remote\nnpm run db:seed:remote",
   },
